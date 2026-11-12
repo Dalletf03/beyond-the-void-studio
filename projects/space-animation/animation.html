@@ -3,199 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <style>
-*{margin:0}
-html,body{width:100%;height:100%;overflow:hidden;background:#071326}
+*{margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#08051d}
 svg{width:1280px;height:720px;display:block}
 </style>
 </head>
 <body>
-<svg id="scene" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+<svg id="scene" viewBox="0 0 1280 720"
+xmlns="http://www.w3.org/2000/svg">
 <defs>
  <radialGradient id="space">
-  <stop stop-color="#263c67"/>
-  <stop offset=".55" stop-color="#101e40"/>
-  <stop offset="1" stop-color="#050d20"/>
+  <stop stop-color="#17104a"/>
+  <stop offset=".55" stop-color="#0b0a32"/>
+  <stop offset="1" stop-color="#05051b"/>
  </radialGradient>
- <radialGradient id="planet" cx="28%" cy="23%" r="85%">
-  <stop stop-color="#b7f3df"/>
-  <stop offset=".25" stop-color="#55c7b6"/>
-  <stop offset=".62" stop-color="#287e91"/>
-  <stop offset="1" stop-color="#14375e"/>
+ <radialGradient id="core">
+  <stop stop-color="#ffffff"/>
+  <stop offset=".23" stop-color="#fffbd0"/>
+  <stop offset=".55" stop-color="#ffe65c"/>
+  <stop offset="1" stop-color="#ff9c36" stop-opacity=".15"/>
  </radialGradient>
- <linearGradient id="atmosphere" x1="0" y1="0" x2="1" y2="1">
-  <stop stop-color="#b4fff0"/>
-  <stop offset=".5" stop-color="#57c9df"/>
-  <stop offset="1" stop-color="#6685d9"/>
- </linearGradient>
- <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
-  <stop stop-color="#f4d99c"/>
-  <stop offset=".5" stop-color="#d5a978"/>
-  <stop offset="1" stop-color="#a96f68"/>
- </linearGradient>
- <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
-  <stop stop-color="#f7e5c0"/>
-  <stop offset=".5" stop-color="#b9a4c7"/>
-  <stop offset="1" stop-color="#6b729b"/>
- </linearGradient>
- <radialGradient id="moon">
-  <stop stop-color="#fff4d7"/>
-  <stop offset=".7" stop-color="#c8b9a5"/>
-  <stop offset="1" stop-color="#777b91"/>
+ <radialGradient id="halo">
+  <stop stop-color="#ffb5e8" stop-opacity=".55"/>
+  <stop offset=".5" stop-color="#9c36df" stop-opacity=".2"/>
+  <stop offset="1" stop-color="#5222d8" stop-opacity="0"/>
  </radialGradient>
- <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
-  <feGaussianBlur stdDeviation="24"/>
+ <linearGradient id="pink" x1="0" y1="0" x2="1" y2="1">
+  <stop stop-color="#ff75bd"/>
+  <stop offset=".5" stop-color="#e82b9b"/>
+  <stop offset="1" stop-color="#9e2bba"/>
+ </linearGradient>
+ <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+  <stop stop-color="#fff078"/>
+  <stop offset=".5" stop-color="#ff9b3d"/>
+  <stop offset="1" stop-color="#f04478"/>
+ </linearGradient>
+ <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+  <stop stop-color="#51c9ff"/>
+  <stop offset=".5" stop-color="#3657ff"/>
+  <stop offset="1" stop-color="#7136d8"/>
+ </linearGradient>
+ <filter id="soft">
+  <feGaussianBlur stdDeviation="22"/>
  </filter>
- <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-  <feGaussianBlur stdDeviation="5"/>
+ <filter id="glow">
+  <feGaussianBlur stdDeviation="7"/>
  </filter>
- <clipPath id="planetClip">
-  <circle cx="790" cy="385" r="205"/>
- </clipPath>
 </defs>
 
-<!-- Deep space -->
 <rect width="1280" height="720" fill="url(#space)"/>
-<ellipse cx="280" cy="300" rx="410" ry="270" fill="#6550a1" opacity=".12" filter="url(#glow)"/>
-<ellipse cx="1100" cy="170" rx="300" ry="210" fill="#319caa" opacity=".13" filter="url(#glow)"/>
-<path d="M0 510 Q280 300 550 470 T1280 390" fill="none" stroke="#7863bd" stroke-width="90" opacity=".045" filter="url(#soft)"/>
-
-<!-- Distant planet -->
-<g opacity=".8">
- <circle cx="210" cy="205" r="76" fill="#273b69"/>
- <path d="M145 198 Q190 155 270 182 M145 225 Q205 190 275 213" fill="none" stroke="#6f8cae" stroke-width="9" opacity=".35"/>
- <circle cx="210" cy="205" r="76" fill="none" stroke="#8498c1" stroke-width="2" opacity=".35"/>
+<g id="nebula" opacity=".8">
+ <ellipse cx="630" cy="350" rx="490" ry="260"
+ fill="#4820a8" opacity=".22" filter="url(#soft)"/>
+ <circle cx="340" cy="210" r="170"
+ fill="#b327a7" opacity=".14" filter="url(#soft)"/>
+ <circle cx="940" cy="490" r="190"
+ fill="#244cda" opacity=".16" filter="url(#soft)"/>
 </g>
 
-<!-- Star field -->
 <g id="stars"></g>
 
-<!-- Planetary glow -->
-<circle cx="790" cy="385" r="270" fill="#47c4d6" opacity=".12" filter="url(#glow)"/>
+<g id="camera">
+ <g id="galaxy" transform="rotate(-13 640 360)">
+  <!-- outer blue orbital sweeps -->
+  <ellipse cx="640" cy="360" rx="480" ry="145"
+   fill="none" stroke="#243bd8" stroke-width="22"
+   stroke-linecap="round" stroke-dasharray="720 150 300 180"
+   opacity=".9"/>
+  <ellipse cx="640" cy="360" rx="445" ry="128"
+   fill="none" stroke="url(#blue)" stroke-width="13"
+   stroke-linecap="round" stroke-dasharray="560 95 250 150"
+   opacity=".95"/>
+  <ellipse cx="640" cy="360" rx="395" ry="112"
+   fill="none" stroke="#7435d4" stroke-width="24"
+   stroke-linecap="round" stroke-dasharray="510 120 320 130"
+   opacity=".9"/>
 
-<!-- Far side of rings -->
-<g transform="translate(790 385) rotate(-16)">
- <ellipse rx="330" ry="112" fill="none" stroke="#a99abd" stroke-width="28" opacity=".38"/>
- <ellipse rx="330" ry="112" fill="none" stroke="#f2d9b2" stroke-width="3" opacity=".75"/>
- <ellipse rx="365" ry="124" fill="none" stroke="#9e92c5" stroke-width="7" opacity=".3"/>
-</g>
+  <!-- violet outer galaxy -->
+  <ellipse cx="640" cy="360" rx="355" ry="103"
+   fill="#7627a5" opacity=".95"/>
+  <ellipse cx="640" cy="360" rx="328" ry="91"
+   fill="none" stroke="#bd35a6" stroke-width="19"
+   stroke-dasharray="480 60 260 110"
+   stroke-linecap="round"/>
 
-<!-- Planet -->
-<g id="planetGroup">
- <circle cx="790" cy="385" r="205" fill="url(#planet)"/>
- <g clip-path="url(#planetClip)">
-  <!-- Stylised continents -->
-  <path d="M615 282 Q645 240 693 250 L721 275 710 305 743 326 724 354 683 360 666 394 628 381 600 348Z" fill="url(#land)"/>
-  <path d="M780 220 Q824 230 849 257 L878 265 887 301 859 324 865 351 836 374 803 356 786 329 757 315 765 276Z" fill="#e7c28e"/>
-  <path d="M887 387 Q923 357 961 376 L986 412 968 450 943 460 931 502 892 489 872 455 850 429Z" fill="#d3a47b"/>
-  <path d="M690 420 Q720 392 754 411 L778 446 761 478 730 490 705 468Z" fill="#d9b58a"/>
-  <path d="M615 282 Q645 240 693 250 L721 275 710 305 743 326 724 354 683 360 666 394 628 381 600 348Z" fill="none" stroke="#fff0c6" stroke-width="5" opacity=".3"/>
-  <!-- Mountains -->
-  <path d="M628 347 L649 310 667 340 683 300 709 350 729 325 745 366" fill="none" stroke="#f6e0bb" stroke-width="7" opacity=".55"/>
-  <path d="M793 289 L815 259 835 287 850 270 871 313" fill="none" stroke="#fff0d3" stroke-width="7" opacity=".45"/>
-  <!-- Ocean currents -->
-  <path d="M585 398 Q690 355 780 402 T1000 385 M600 530 Q720 477 830 510 T1010 475" fill="none" stroke="#a8f2db" stroke-width="8" opacity=".24"/>
-  <!-- Atmospheric clouds -->
-  <g fill="none" stroke="#e0fff0" stroke-width="10" opacity=".35">
-   <path d="M620 260 Q680 230 735 260 T840 248"/>
-   <path d="M830 435 Q900 405 970 435 T1040 420"/>
-   <path d="M610 465 Q670 440 720 461"/>
+  <!-- pink and red inner bands -->
+  <ellipse cx="640" cy="360" rx="285" ry="78"
+   fill="url(#pink)"/>
+  <ellipse cx="640" cy="360" rx="254" ry="67"
+   fill="#f04a91"/>
+  <ellipse cx="640" cy="360" rx="220" ry="57"
+   fill="url(#orange)"/>
+
+  <!-- warm yellow inner spiral bands -->
+  <ellipse cx="640" cy="360" rx="180" ry="44"
+   fill="#ffdc58"/>
+  <ellipse cx="640" cy="360" rx="144" ry="34"
+   fill="#ffec7a"/>
+  <ellipse cx="640" cy="360" rx="91" ry="24"
+   fill="url(#core)"/>
+
+  <!-- bright centre -->
+  <ellipse cx="640" cy="360" rx="55" ry="20"
+   fill="#fff9dd" filter="url(#glow)" opacity=".8"/>
+  <ellipse cx="640" cy="360" rx="44" ry="16"
+   fill="#fffdf0"/>
+  <ellipse cx="640" cy="360" rx="25" ry="9"
+   fill="#ffffff"/>
+
+  <!-- graphic streaks -->
+  <g fill="none" stroke-linecap="round">
+   <path d="M330 326 Q430 246 550 276"
+    stroke="#ffbd61" stroke-width="13"/>
+   <path d="M715 279 Q835 260 920 312"
+    stroke="#ff6eb5" stroke-width="12"/>
+   <path d="M405 421 Q520 470 615 430"
+    stroke="#f64e9d" stroke-width="10"/>
+   <path d="M740 420 Q860 438 960 384"
+    stroke="#4b83ff" stroke-width="12"/>
+   <path d="M515 302 Q580 268 628 281"
+    stroke="#fff28a" stroke-width="8"/>
+   <path d="M680 302 Q748 282 790 306"
+    stroke="#fff078" stroke-width="7"/>
+   <path d="M540 394 Q610 420 665 405"
+    stroke="#ff9d47" stroke-width="8"/>
   </g>
-  <!-- Surface detail -->
-  <g fill="#fff1ce" opacity=".4">
-   <circle cx="675" cy="328" r="5"/><circle cx="704" cy="345" r="4"/>
-   <circle cx="825" cy="300" r="5"/><circle cx="908" cy="423" r="6"/>
-   <circle cx="741" cy="448" r="4"/><circle cx="862" cy="476" r="4"/>
+
+  <!-- little orbit fragments -->
+  <g fill="#ff75b9">
+   <rect x="290" y="355" width="40" height="12" rx="6"/>
+   <rect x="875" y="340" width="48" height="12" rx="6"/>
+   <rect x="470" y="451" width="35" height="10" rx="5"/>
+  </g>
+  <g fill="#4779ff">
+   <rect x="245" y="300" width="46" height="11" rx="6"/>
+   <rect x="925" y="410" width="42" height="11" rx="6"/>
   </g>
  </g>
- <circle cx="790" cy="385" r="205" fill="none" stroke="url(#atmosphere)" stroke-width="8"/>
- <circle cx="790" cy="385" r="215" fill="none" stroke="#b2fff0" stroke-width="2" opacity=".35"/>
 </g>
 
-<!-- Front side of ring -->
-<g transform="translate(790 385) rotate(-16)">
- <path d="M-330 0 A330 112 0 0 0 330 0" fill="none" stroke="url(#ring)" stroke-width="30" opacity=".88"/>
- <path d="M-330 0 A330 112 0 0 0 330 0" fill="none" stroke="#fff0d1" stroke-width="4" opacity=".85"/>
- <path d="M-350 0 A350 118 0 0 0 350 0" fill="none" stroke="#a8a1ca" stroke-width="5" opacity=".65"/>
+<!-- comet and its trail -->
+<g id="comet">
+ <path id="cometTrail" d=""
+ fill="none" stroke="#8adfff" stroke-width="4"
+ stroke-linecap="round" opacity=".8"/>
+ <circle cx="0" cy="0" r="7" fill="#ffffff"/>
+ <circle cx="0" cy="0" r="16" fill="#69caff"
+ opacity=".35" filter="url(#glow)"/>
 </g>
 
-<!-- Orbiting moon -->
-<g id="moonGroup">
- <circle r="36" fill="url(#moon)"/>
- <circle cx="-11" cy="-8" r="7" fill="#8e8991" opacity=".45"/>
- <circle cx="13" cy="9" r="5" fill="#8e8991" opacity=".35"/>
- <circle cx="5" cy="-17" r="3" fill="#fff6dc" opacity=".6"/>
- <circle r="37" fill="none" stroke="#fff0d7" stroke-width="2" opacity=".5"/>
-</g>
+<g id="sparkles" fill="#ffffff"></g>
 
-<!-- Spacecraft -->
-<g id="ship">
- <path d="M-34 0 L-8 -13 31 0 -8 13Z" fill="#f4e4c4"/>
- <path d="M-10 -9 L-28 -29 -1 -15Z" fill="#d49d73"/>
- <path d="M-10 9 L-28 29 -1 15Z" fill="#d49d73"/>
- <path d="M-3 -7 L12 0 -3 7Z" fill="#73d9e8"/>
- <path d="M-34 0 L-56 -5 -46 0 -56 5Z" fill="#f5ad69"/>
- <circle cx="6" cy="0" r="3" fill="#fff"/>
-</g>
-
-<!-- Foreground drifting dust -->
-<g id="dust" fill="#f3dfba" opacity=".65">
- <circle cx="120" cy="550" r="2"/><circle cx="380" cy="115" r="2"/>
- <circle cx="1080" cy="550" r="3"/><circle cx="1130" cy="330" r="2"/>
- <circle cx="480" cy="610" r="2"/><circle cx="950" cy="90" r="2"/>
-</g>
-
-<!-- Subtle title -->
-<text x="640" y="76" fill="#e5e5f3" text-anchor="middle"
- font-family="Arial,sans-serif" font-size="20" letter-spacing="8" opacity=".8">
- BEYOND THE VOID
-</text>
-<text x="640" y="108" fill="#9fb9ce" text-anchor="middle"
- font-family="Arial,sans-serif" font-size="10" letter-spacing="5" opacity=".7">
- WORLDS BEYOND OUR IMAGINATION
-</text>
 </svg>
 
 <script>
 const NS="http://www.w3.org/2000/svg";
 const stars=document.getElementById("stars");
-for(let i=0;i<260;i++){
+const sparkles=document.getElementById("sparkles");
+const comet=document.getElementById("comet");
+const trail=document.getElementById("cometTrail");
+const camera=document.getElementById("camera");
+const galaxy=document.getElementById("galaxy");
+
+function seeded(n){
+ const x=Math.sin(n*127.1+311.7)*43758.5453;
+ return x-Math.floor(x);
+}
+
+for(let i=0;i<230;i++){
+ const x=seeded(i+1)*1280;
+ const y=seeded(i+500)*720;
+ const r=.6+seeded(i+900)*2.1;
+ const c=["#ffffff","#a8b7ff","#e99cff","#72cfff"][i%4];
  const s=document.createElementNS(NS,"circle");
- const xx=(i*7919)%1280, yy=(i*3571)%720;
- s.setAttribute("cx",xx);s.setAttribute("cy",yy);
- s.setAttribute("r",.7+(i%5)*.45);
- s.setAttribute("fill",i%5===0?"#a9e5ed":"#fff1d8");
- s.setAttribute("opacity",.2+(i%6)*.1);
+ s.setAttribute("cx",x);
+ s.setAttribute("cy",y);
+ s.setAttribute("r",r);
+ s.setAttribute("fill",c);
+ s.dataset.phase=seeded(i+1400)*6.28;
+ s.dataset.base=.25+seeded(i+1800)*.65;
  stars.appendChild(s);
 }
-const moon=document.getElementById("moonGroup");
-const ship=document.getElementById("ship");
-const planet=document.getElementById("planetGroup");
-const scene=document.getElementById("scene");
+
+for(let i=0;i<20;i++){
+ const s=document.createElementNS(NS,"circle");
+ s.setAttribute("cx",seeded(i+2200)*1280);
+ s.setAttribute("cy",seeded(i+2400)*720);
+ s.setAttribute("r",1.5+seeded(i+2600)*2.5);
+ s.setAttribute("opacity",".8");
+ sparkles.appendChild(s);
+}
 
 window.renderAt=function(t){
- const smooth=t/10;
- // A slow, gentle camera drift
- const camX=Math.sin(smooth*Math.PI*2)*10;
- const camY=Math.cos(smooth*Math.PI*2)*5;
- planet.setAttribute("transform",`translate(${camX} ${camY})`);
- // Moon follows a graceful elliptical orbit
- const a=smooth*Math.PI*2;
- const mx=790+365*Math.cos(a);
- const my=385+142*Math.sin(a);
- moon.setAttribute("transform",`translate(${mx} ${my}) scale(${.9+.1*Math.sin(a)})`);
- // Ship follows a sweeping curved flight path
- const u=smooth;
- const sx=400+480*u;
- const sy=170+70*Math.sin(u*Math.PI*2);
- const angle=Math.atan2(70*2*Math.PI/10*Math.cos(u*Math.PI*2),48);
- ship.setAttribute("transform",`translate(${sx} ${sy}) rotate(${angle*180/Math.PI})`);
- // Slowly drifting foreground dust
- document.getElementById("dust").setAttribute("transform",
- `translate(${Math.sin(a)*18} ${Math.cos(a)*12})`);
- // Gentle star twinkle
- [...stars.children].forEach((s,i)=>{
-  s.setAttribute("opacity",.25+.45*(.5+.5*Math.sin(t*1.7+i*2.3)));
+ const turn=t/10;
+ const rotation=-13+turn*5+Math.sin(turn*6.28)*1.2;
+ galaxy.setAttribute("transform",
+  `rotate(${rotation} 640 360)`);
+ const zoom=1+.055*(.5-.5*Math.cos(turn*Math.PI));
+ camera.setAttribute("transform",
+  `translate(640 360) scale(${zoom}) translate(-640 -360)`);
+
+ [...stars.children].forEach(s=>{
+  const phase=Number(s.dataset.phase);
+  const base=Number(s.dataset.base);
+  s.setAttribute("opacity",
+   base*(.55+.45*Math.sin(t*1.8+phase)));
  });
+
+ const a=turn*Math.PI*2;
+ const x=640+540*Math.cos(a);
+ const y=360+230*Math.sin(a);
+ comet.setAttribute("transform",`translate(${x} ${y})`);
+ const tx=640+540*Math.cos(a-.12);
+ const ty=360+230*Math.sin(a-.12);
+ trail.setAttribute("d",`M ${tx} ${ty} Q ${x-45} ${y-12} ${x} ${y}`);
 };
 window.renderAt(0);
 </script>
