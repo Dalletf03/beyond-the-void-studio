@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Beyond The Void - Space</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 50%, #101d42 0%, #050817 55%, #010208 100%);
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, white 99%, transparent),
+    radial-gradient(1px 1px at 30% 70%, white 99%, transparent),
+    radial-gradient(2px 2px at 80% 30%, white 99%, transparent),
+    radial-gradient(1px 1px at 65% 80%, white 99%, transparent),
+    radial-gradient(2px 2px at 45% 15%, white 99%, transparent),
+    radial-gradient(1px 1px at 90% 75%, white 99%, transparent);
+  background-size: 300px 250px;
+  animation: drift 35s linear infinite;
+}
+@keyframes drift {
+  from { transform: translateY(0); }
+  to { transform: translateY(250px); }
+}
+.title {
+  position: absolute;
+  top: 9%;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 7px;
+  font-size: clamp(18px, 3vw, 30px);
+  text-shadow: 0 0 20px #5bbcff;
+}
+.planet {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 28%, #a9e8ff 0%, #287dbd 17%, #12366f 48%, #050b24 75%);
+  box-shadow: -25px 5px 55px #287dd9, 20px 0 90px #143b9c;
+  animation: breathe 5s ease-in-out infinite alternate;
+}
+@keyframes breathe {
+  from { box-shadow: -25px 5px 45px #287dd9, 20px 0 70px #143b9c; }
+  to { box-shadow: -25px 5px 75px #50baff, 20px 0 110px #143b9c; }
+}
+.ring {
+  position: absolute;
+  width: 390px;
+  height: 110px;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  border: 3px solid rgba(113, 205, 255, .8);
+  border-radius: 50%;
+  box-shadow: 0 0 18px #48baff, inset 0 0 15px #48baff;
+  animation: rotate 18s linear infinite;
+}
+@keyframes rotate {
+  from { transform: translate(-50%, -50%) rotate(-18deg); }
+  to { transform: translate(-50%, -50%) rotate(342deg); }
+}
+.caption {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+  color: #b8dfff;
+  letter-spacing: 4px;
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="title">BEYOND THE VOID</div>
+<div class="ring"></div>
+<div class="planet"></div>
+<div class="caption">EXPLORE THE INFINITE</div>
+</body>
+</html>

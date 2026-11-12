@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#071326}
+svg{width:1280px;height:720px;display:block}
+</style>
+</head>
+<body>
+<svg id="scene" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <radialGradient id="space">
+  <stop stop-color="#263c67"/>
+  <stop offset=".55" stop-color="#101e40"/>
+  <stop offset="1" stop-color="#050d20"/>
+ </radialGradient>
+ <radialGradient id="planet" cx="28%" cy="23%" r="85%">
+  <stop stop-color="#b7f3df"/>
+  <stop offset=".25" stop-color="#55c7b6"/>
+  <stop offset=".62" stop-color="#287e91"/>
+  <stop offset="1" stop-color="#14375e"/>
+ </radialGradient>
+ <linearGradient id="atmosphere" x1="0" y1="0" x2="1" y2="1">
+  <stop stop-color="#b4fff0"/>
+  <stop offset=".5" stop-color="#57c9df"/>
+  <stop offset="1" stop-color="#6685d9"/>
+ </linearGradient>
+ <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+  <stop stop-color="#f4d99c"/>
+  <stop offset=".5" stop-color="#d5a978"/>
+  <stop offset="1" stop-color="#a96f68"/>
+ </linearGradient>
+ <linearGradient id="ring" x1="0" y1="0" x2="0" y2="1">
+  <stop stop-color="#f7e5c0"/>
+  <stop offset=".5" stop-color="#b9a4c7"/>
+  <stop offset="1" stop-color="#6b729b"/>
+ </linearGradient>
+ <radialGradient id="moon">
+  <stop stop-color="#fff4d7"/>
+  <stop offset=".7" stop-color="#c8b9a5"/>
+  <stop offset="1" stop-color="#777b91"/>
+ </radialGradient>
+ <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+  <feGaussianBlur stdDeviation="24"/>
+ </filter>
+ <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+  <feGaussianBlur stdDeviation="5"/>
+ </filter>
+ <clipPath id="planetClip">
+  <circle cx="790" cy="385" r="205"/>
+ </clipPath>
+</defs>
+
+<!-- Deep space -->
+<rect width="1280" height="720" fill="url(#space)"/>
+<ellipse cx="280" cy="300" rx="410" ry="270" fill="#6550a1" opacity=".12" filter="url(#glow)"/>
+<ellipse cx="1100" cy="170" rx="300" ry="210" fill="#319caa" opacity=".13" filter="url(#glow)"/>
+<path d="M0 510 Q280 300 550 470 T1280 390" fill="none" stroke="#7863bd" stroke-width="90" opacity=".045" filter="url(#soft)"/>
+
+<!-- Distant planet -->
+<g opacity=".8">
+ <circle cx="210" cy="205" r="76" fill="#273b69"/>
+ <path d="M145 198 Q190 155 270 182 M145 225 Q205 190 275 213" fill="none" stroke="#6f8cae" stroke-width="9" opacity=".35"/>
+ <circle cx="210" cy="205" r="76" fill="none" stroke="#8498c1" stroke-width="2" opacity=".35"/>
+</g>
+
+<!-- Star field -->
+<g id="stars"></g>
+
+<!-- Planetary glow -->
+<circle cx="790" cy="385" r="270" fill="#47c4d6" opacity=".12" filter="url(#glow)"/>
+
+<!-- Far side of rings -->
+<g transform="translate(790 385) rotate(-16)">
+ <ellipse rx="330" ry="112" fill="none" stroke="#a99abd" stroke-width="28" opacity=".38"/>
+ <ellipse rx="330" ry="112" fill="none" stroke="#f2d9b2" stroke-width="3" opacity=".75"/>
+ <ellipse rx="365" ry="124" fill="none" stroke="#9e92c5" stroke-width="7" opacity=".3"/>
+</g>
+
+<!-- Planet -->
+<g id="planetGroup">
+ <circle cx="790" cy="385" r="205" fill="url(#planet)"/>
+ <g clip-path="url(#planetClip)">
+  <!-- Stylised continents -->
+  <path d="M615 282 Q645 240 693 250 L721 275 710 305 743 326 724 354 683 360 666 394 628 381 600 348Z" fill="url(#land)"/>
+  <path d="M780 220 Q824 230 849 257 L878 265 887 301 859 324 865 351 836 374 803 356 786 329 757 315 765 276Z" fill="#e7c28e"/>
+  <path d="M887 387 Q923 357 961 376 L986 412 968 450 943 460 931 502 892 489 872 455 850 429Z" fill="#d3a47b"/>
+  <path d="M690 420 Q720 392 754 411 L778 446 761 478 730 490 705 468Z" fill="#d9b58a"/>
+  <path d="M615 282 Q645 240 693 250 L721 275 710 305 743 326 724 354 683 360 666 394 628 381 600 348Z" fill="none" stroke="#fff0c6" stroke-width="5" opacity=".3"/>
+  <!-- Mountains -->
+  <path d="M628 347 L649 310 667 340 683 300 709 350 729 325 745 366" fill="none" stroke="#f6e0bb" stroke-width="7" opacity=".55"/>
+  <path d="M793 289 L815 259 835 287 850 270 871 313" fill="none" stroke="#fff0d3" stroke-width="7" opacity=".45"/>
+  <!-- Ocean currents -->
+  <path d="M585 398 Q690 355 780 402 T1000 385 M600 530 Q720 477 830 510 T1010 475" fill="none" stroke="#a8f2db" stroke-width="8" opacity=".24"/>
+  <!-- Atmospheric clouds -->
+  <g fill="none" stroke="#e0fff0" stroke-width="10" opacity=".35">
+   <path d="M620 260 Q680 230 735 260 T840 248"/>
+   <path d="M830 435 Q900 405 970 435 T1040 420"/>
+   <path d="M610 465 Q670 440 720 461"/>
+  </g>
+  <!-- Surface detail -->
+  <g fill="#fff1ce" opacity=".4">
+   <circle cx="675" cy="328" r="5"/><circle cx="704" cy="345" r="4"/>
+   <circle cx="825" cy="300" r="5"/><circle cx="908" cy="423" r="6"/>
+   <circle cx="741" cy="448" r="4"/><circle cx="862" cy="476" r="4"/>
+  </g>
+ </g>
+ <circle cx="790" cy="385" r="205" fill="none" stroke="url(#atmosphere)" stroke-width="8"/>
+ <circle cx="790" cy="385" r="215" fill="none" stroke="#b2fff0" stroke-width="2" opacity=".35"/>
+</g>
+
+<!-- Front side of ring -->
+<g transform="translate(790 385) rotate(-16)">
+ <path d="M-330 0 A330 112 0 0 0 330 0" fill="none" stroke="url(#ring)" stroke-width="30" opacity=".88"/>
+ <path d="M-330 0 A330 112 0 0 0 330 0" fill="none" stroke="#fff0d1" stroke-width="4" opacity=".85"/>
+ <path d="M-350 0 A350 118 0 0 0 350 0" fill="none" stroke="#a8a1ca" stroke-width="5" opacity=".65"/>
+</g>
+
+<!-- Orbiting moon -->
+<g id="moonGroup">
+ <circle r="36" fill="url(#moon)"/>
+ <circle cx="-11" cy="-8" r="7" fill="#8e8991" opacity=".45"/>
+ <circle cx="13" cy="9" r="5" fill="#8e8991" opacity=".35"/>
+ <circle cx="5" cy="-17" r="3" fill="#fff6dc" opacity=".6"/>
+ <circle r="37" fill="none" stroke="#fff0d7" stroke-width="2" opacity=".5"/>
+</g>
+
+<!-- Spacecraft -->
+<g id="ship">
+ <path d="M-34 0 L-8 -13 31 0 -8 13Z" fill="#f4e4c4"/>
+ <path d="M-10 -9 L-28 -29 -1 -15Z" fill="#d49d73"/>
+ <path d="M-10 9 L-28 29 -1 15Z" fill="#d49d73"/>
+ <path d="M-3 -7 L12 0 -3 7Z" fill="#73d9e8"/>
+ <path d="M-34 0 L-56 -5 -46 0 -56 5Z" fill="#f5ad69"/>
+ <circle cx="6" cy="0" r="3" fill="#fff"/>
+</g>
+
+<!-- Foreground drifting dust -->
+<g id="dust" fill="#f3dfba" opacity=".65">
+ <circle cx="120" cy="550" r="2"/><circle cx="380" cy="115" r="2"/>
+ <circle cx="1080" cy="550" r="3"/><circle cx="1130" cy="330" r="2"/>
+ <circle cx="480" cy="610" r="2"/><circle cx="950" cy="90" r="2"/>
+</g>
+
+<!-- Subtle title -->
+<text x="640" y="76" fill="#e5e5f3" text-anchor="middle"
+ font-family="Arial,sans-serif" font-size="20" letter-spacing="8" opacity=".8">
+ BEYOND THE VOID
+</text>
+<text x="640" y="108" fill="#9fb9ce" text-anchor="middle"
+ font-family="Arial,sans-serif" font-size="10" letter-spacing="5" opacity=".7">
+ WORLDS BEYOND OUR IMAGINATION
+</text>
+</svg>
+
+<script>
+const NS="http://www.w3.org/2000/svg";
+const stars=document.getElementById("stars");
+for(let i=0;i<260;i++){
+ const s=document.createElementNS(NS,"circle");
+ const xx=(i*7919)%1280, yy=(i*3571)%720;
+ s.setAttribute("cx",xx);s.setAttribute("cy",yy);
+ s.setAttribute("r",.7+(i%5)*.45);
+ s.setAttribute("fill",i%5===0?"#a9e5ed":"#fff1d8");
+ s.setAttribute("opacity",.2+(i%6)*.1);
+ stars.appendChild(s);
+}
+const moon=document.getElementById("moonGroup");
+const ship=document.getElementById("ship");
+const planet=document.getElementById("planetGroup");
+const scene=document.getElementById("scene");
+
+window.renderAt=function(t){
+ const smooth=t/10;
+ // A slow, gentle camera drift
+ const camX=Math.sin(smooth*Math.PI*2)*10;
+ const camY=Math.cos(smooth*Math.PI*2)*5;
+ planet.setAttribute("transform",`translate(${camX} ${camY})`);
+ // Moon follows a graceful elliptical orbit
+ const a=smooth*Math.PI*2;
+ const mx=790+365*Math.cos(a);
+ const my=385+142*Math.sin(a);
+ moon.setAttribute("transform",`translate(${mx} ${my}) scale(${.9+.1*Math.sin(a)})`);
+ // Ship follows a sweeping curved flight path
+ const u=smooth;
+ const sx=400+480*u;
+ const sy=170+70*Math.sin(u*Math.PI*2);
+ const angle=Math.atan2(70*2*Math.PI/10*Math.cos(u*Math.PI*2),48);
+ ship.setAttribute("transform",`translate(${sx} ${sy}) rotate(${angle*180/Math.PI})`);
+ // Slowly drifting foreground dust
+ document.getElementById("dust").setAttribute("transform",
+ `translate(${Math.sin(a)*18} ${Math.cos(a)*12})`);
+ // Gentle star twinkle
+ [...stars.children].forEach((s,i)=>{
+  s.setAttribute("opacity",.25+.45*(.5+.5*Math.sin(t*1.7+i*2.3)));
+ });
+};
+window.renderAt(0);
+</script>
+</body>
+</html>
